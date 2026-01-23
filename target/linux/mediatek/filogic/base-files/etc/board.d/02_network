@@ -75,7 +75,8 @@ mediatek_setup_interfaces()
 	bananapi,bpi-r3-mini|\
 	edgecore,eap111|\
 	huasifei,wh3000|\
-	huasifei,wh3000-pro)
+	huasifei,wh3000-pro|\
+	wavlink,wl-wnt100x3-ubootmod)
 		ucidef_set_interfaces_lan_wan eth0 eth1
 		;;
 	bananapi,bpi-r4|\
@@ -104,6 +105,7 @@ mediatek_setup_interfaces()
 	glinet,gl-x3000|\
 	glinet,gl-xe3000|\
 	openembed,som7981|\
+	wavlink,wl-wnt100x3|\
 	openwrt,one)
 		ucidef_set_interfaces_lan_wan eth1 eth0
 		;;
