@@ -1,0 +1,5 @@
+# Move USB to Core1t2, WiFi 2.4GHz and 5GHz to Core2t1 and Core2t1 
+echo 2 > "/proc/irq/29/smp_affinity"
+echo 4 > "/proc/irq/31/smp_affinity"
+echo 8 > "/proc/irq/32/smp_affinity"
+exit 0
