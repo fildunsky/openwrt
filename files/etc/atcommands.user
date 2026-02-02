@@ -1,0 +1,15 @@
+Check signal strength > AT+CSQ;AT+CSQ
+Get the temperature of MT > AT+QTEMP;AT+QTEMP
+Current band in use > AT+QNWINFO;AT+QNWINFO
+Band 1+3+7+8+20+38+40+41 > AT+QCFG="band",0,1A0000800C5;AT+QCFG="band",0,1A0000800C5
+Band 1+3+7+38 > AT+QCFG="band",0,2000000045;AT+QCFG="band",0,2000000045
+Band 3+7+38 > AT+QCFG="band",0,2000000044;AT+QCFG="band",0,2000000044
+Band 3+7 > AT+QCFG="band",0,0000000044;AT+QCFG="band",0,0000000044
+Band 7 > AT+QCFG="band",0,0000000040;AT+QCFG="band",0,0000000040
+Band 38 > AT+QCFG="band",0,2000000000;AT+QCFG="band",0,2000000000
+Reboot modem  >  AT+CFUN=1,1;AT+CFUN=1,1
+QMI/PPP/Default > AT+QCFG="usbnet",0;AT+QCFG="usbnet",0
+Network search LTE/WCDMA/GSM > AT+QCFG=“nwscanseq”,040301;AT+QCFG=“nwscanseq”,040301
+4G-LTE only > AT+QCFG="nwscanmode",3,1;AT+QCFG="nwscanmode",3,1
+Scan all modes > AT+QCFG="nwscanmode",0,1;AT+QCFG="nwscanmode",0,1
+Change IMEI > AT+EGMR=1,7,"000000000000000";AT+EGMR=1,7,"000000000000000"
