@@ -1,0 +1,4 @@
+config 3ginfo
+        option website ''
+        option network 'modem'
+        option device '/dev/ttyUSB2'
