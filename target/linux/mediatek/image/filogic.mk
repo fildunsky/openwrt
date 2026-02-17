@@ -2232,14 +2232,13 @@ define Device/netcore_n60-pro
   DEVICE_MODEL := N60 Pro
   DEVICE_ALT0_VENDOR := netis
   DEVICE_ALT0_MODEL := NX62
-  DEVICE_ALT0_VARIANT := V1
+  DEVICE_ALT0_VARIANT := v1
   DEVICE_DTS := mt7986a-netcore-n60-pro
   DEVICE_DTS_DIR := ../dts
   UBINIZE_OPTS := -E 5
   BLOCKSIZE := 128k
   PAGESIZE := 2048
   KERNEL_IN_UBI := 1
-  UBOOTENV_IN_UBI := 1
   IMAGES := sysupgrade.itb
   KERNEL_INITRAMFS_SUFFIX := -recovery.itb
   KERNEL := kernel-bin | gzip
