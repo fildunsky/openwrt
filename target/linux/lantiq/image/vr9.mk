@@ -106,6 +106,20 @@ define Device/arcadyan_vrv9510kwac23
 endef
 TARGET_DEVICES += arcadyan_vrv9510kwac23
 
+define Device/audiocodes_mp272d
+  $(Device/dsa-migration)
+  DEVICE_VENDOR := AudioCodes
+  DEVICE_MODEL := MP272D
+  DEVICE_ALT0_VENDOR := Megafon
+  DEVICE_ALT0_MODEL := R2
+  IMAGE_SIZE := 32768k
+  DEVICE_PACKAGES := kmod-usb-dwc2 kmod-rt2800-pci \
+  	xrx200-rev1.1-phy22f-firmware xrx200-rev1.2-phy22f-firmware \
+	-kmod-ltq-vdsl-vr9 -kmod-ltq-vdsl-vr9-mei -kmod-ltq-vectoring \
+	-kmod-ltq-deu-vr9
+endef
+TARGET_DEVICES += audiocodes_mp272d
+
 define Device/avm_fritz3370
   $(Device/dsa-migration)
   $(Device/AVM)

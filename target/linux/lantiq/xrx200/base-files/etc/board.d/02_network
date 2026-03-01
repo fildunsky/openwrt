@@ -19,6 +19,7 @@ lantiq_setup_interfaces()
 	arcadyan,vgv7519-brn|\
 	arcadyan,vgv7519-nor|\
 	arcadyan,vrv9510kwac23|\
+	audiocodes,mp272d|\
 	avm,fritz5490|\
 	avm,fritz5490-micron|\
 	bt,homehub-v5a|\
@@ -59,6 +60,9 @@ lantiq_setup_dsl()
 	local annex="a"
 
 	case "$board" in
+	audiocodes,mp272d)
+		return
+		;;
 	arcadyan,vgv7510kw22-brn|\
 	arcadyan,vgv7510kw22-nor|\
 	avm,fritz3370-rev2-hynix|\
@@ -89,6 +93,7 @@ lantiq_setup_macs()
 	arcadyan,arv7519rw22)
 		wan_mac=$(macaddr_add "$(mtd_get_mac_binary boardconfig 0x16)" 1)
 		;;
+	audiocodes,mp272d|\
 	lantiq,easy80920-nand|\
 	lantiq,easy80920-nor|\
 	zyxel,p-2812hnu-f1|\

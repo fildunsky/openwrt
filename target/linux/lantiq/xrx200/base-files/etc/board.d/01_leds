@@ -35,6 +35,16 @@ arcadyan,vrv9510kwac23)
 	ucidef_set_led_netdev "lan" "lan" "green:lan" "eth0"
 	ucidef_set_led_wlan "wifi" "wifi" "green:wlan" "phy1radio"
 	;;
+audiocodes,mp272d)
+	ucidef_set_led_netdev "lanlink1" "lanlink1" "amber:lan1" "lan1" "link"
+	ucidef_set_led_netdev "lan1" "lan1" "green:lan1" "lan1" "tx rx"
+	ucidef_set_led_netdev "lanlink2" "lanlink2" "amber:lan2" "lan2" "link"
+	ucidef_set_led_netdev "lan2" "lan2" "green:lan2" "lan2" "tx rx"
+	ucidef_set_led_netdev "lanlink3" "lanlink3" "amber:lan3" "lan3" "link"
+	ucidef_set_led_netdev "lan3" "lan3" "green:lan3" "lan3" "tx rx"
+	ucidef_set_led_netdev "lanlink4" "lanlink4" "amber:lan4" "lan4" "link"
+	ucidef_set_led_netdev "lan4" "lan4" "green:lan4" "lan4" "tx rx"
+	;;
 zyxel,p-2812hnu-f1|\
 zyxel,p-2812hnu-f3)
 	ucidef_set_led_wlan "wifi" "wifi" "green:wlan" "phy0radio"

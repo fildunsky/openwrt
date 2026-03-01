@@ -1,0 +1,300 @@
+#include "vr9.dtsi"
+
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/leds/common.h>
+#include <dt-bindings/mips/lantiq_rcu_gphy.h>
+
+/ {
+	compatible = "audiocodes,mp272d", "lantiq,xway", "lantiq,vr9";
+	model = "AudioCodes MP272D";
+
+	chosen {
+		bootargs = "console=ttyLTQ0,115200";
+	};
+
+	aliases {
+		led-boot = &status_green;
+		led-failsafe = &status_red;
+		led-running = &status_green;
+		led-upgrade = &status_green;
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x4000000>;
+	};
+
+	keys {
+		compatible = "gpio-keys-polled";
+		poll-interval = <100>;
+
+		reset {
+			label = "reset";
+			gpios = <&gpio 41 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RESTART>;
+		};
+
+		wifi {
+			label = "wifi";
+			gpios = <&gpio 28 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RFKILL>;
+		};
+	};
+	
+	leds {
+		compatible = "gpio-leds";
+
+		phone1_green {
+			label = "green:phone1";
+			gpios = <&stp 0 GPIO_ACTIVE_HIGH>;
+		};
+
+		dect_green {
+			label = "green:dect";
+			gpios = <&stp 1 GPIO_ACTIVE_HIGH>;
+		};
+
+		lan4_amber {
+			label = "amber:lan4";
+			gpios = <&stp 2 GPIO_ACTIVE_HIGH>;
+		};
+
+		lan4_green {
+			label = "green:lan4";
+			gpios = <&stp 3 GPIO_ACTIVE_HIGH>;
+		};
+
+		dect_red {
+			label = "red:dect";
+			gpios = <&stp 4 GPIO_ACTIVE_HIGH>;
+		};
+
+		lan3_amber {
+			label = "amber:lan3";
+			gpios = <&stp 5 GPIO_ACTIVE_HIGH>;
+		};
+
+		lan3_green {
+			label = "green:lan3";
+			gpios = <&stp 6 GPIO_ACTIVE_HIGH>;
+		};
+		
+		phone2_green {
+			label = "green:phone2";
+			gpios = <&stp 7 GPIO_ACTIVE_HIGH>;
+		};
+		
+		usb2_green {
+			label = "green:usb2";
+			gpios = <&stp 8 GPIO_ACTIVE_LOW>;
+			trigger-sources = <&ehci_port2>;
+			linux,default-trigger = "usbport";
+		};
+
+		lan2_amber {
+			label = "amber:lan2";
+			gpios = <&stp 10 GPIO_ACTIVE_HIGH>;
+		};
+		
+		lan2_green {
+			label = "green:lan2";
+			gpios = <&stp 11 GPIO_ACTIVE_HIGH>;
+		};
+
+		lan1_amber {
+			label = "amber:lan1";
+			gpios = <&stp 13 GPIO_ACTIVE_HIGH>;
+		};
+
+		wifi_red {
+			label = "red:wifi";
+			gpios = <&stp 14 GPIO_ACTIVE_HIGH>;
+		};
+
+		usb1_green {
+			label = "green:usb1";
+			gpios = <&stp 15 GPIO_ACTIVE_LOW>;
+			trigger-sources = <&ehci_port1>;
+			linux,default-trigger = "usbport";
+		};
+
+		lan1_green {
+			label = "green:lan1";
+			gpios = <&stp 16 GPIO_ACTIVE_HIGH>;
+		};
+
+		phone_green {
+			label = "green:phone";
+			gpios = <&stp 17 GPIO_ACTIVE_HIGH>;
+		};
+
+		phone_red {
+			label = "red:phone";
+			gpios = <&stp 18 GPIO_ACTIVE_HIGH>;
+		};
+
+		status_green: status_green {
+			label = "green:status";
+			gpios = <&stp 19 GPIO_ACTIVE_HIGH>;
+		};
+
+		status_red: status_red {
+			label = "red:status";
+			gpios = <&stp 20 GPIO_ACTIVE_HIGH>;
+		};
+
+		broadband_green {
+			label = "green:broadband";
+			gpios = <&stp 21 GPIO_ACTIVE_HIGH>;
+		};
+
+		broadband_red {
+			label = "red:broadband";
+			gpios = <&stp 22 GPIO_ACTIVE_HIGH>;
+		};
+	};
+};
+
+&gphy0 {
+	lantiq,gphy-mode = <GPHY_MODE_FE>;
+};
+
+&gphy1 {
+	lantiq,gphy-mode = <GPHY_MODE_FE>;
+};
+
+&gswip {
+	pinctrl-0 = <&mdio_pins>;
+	pinctrl-names = "default";
+};
+
+&gswip_mdio {
+	phy0: ethernet-phy@0 {
+		reg = <0x0>;
+	};
+	phy11: ethernet-phy@11 {
+		reg = <0x11>;
+	};
+	phy12: ethernet-phy@12 {
+		reg = <0x12>;
+	};
+	phy13: ethernet-phy@13 {
+		reg = <0x13>;
+	};
+	phy14: ethernet-phy@14 {
+		reg = <0x14>;
+	};
+};
+
+&gswip_ports {
+	port@0 {
+		reg = <0>;
+		label = "wan";
+		phy-mode = "rgmii-id";
+		tx-internal-delay-ps = <1500>;
+		rx-internal-delay-ps = <1500>;
+		phy-handle = <&phy0>;
+	};
+	
+	port@2 {
+		reg = <2>;
+		label = "lan3";
+		phy-mode = "internal";
+		phy-handle = <&phy11>;
+	};
+
+	port@3 {
+		reg = <3>;
+		label = "lan4";
+		phy-mode = "internal";
+		phy-handle = <&phy12>;
+	};
+
+	port@4 {
+		reg = <4>;
+		label = "lan1";
+		phy-mode = "internal";
+		phy-handle = <&phy13>;
+	};
+
+	port@5 {
+		reg = <5>;
+		label = "lan2";
+		phy-mode = "internal";
+		phy-handle = <&phy14>;
+	};
+};
+
+&localbus {
+	flash@1 {
+		compatible = "lantiq,nand-xway";
+		lantiq,cs = <1>;
+		bank-width = <2>;
+		reg = <0x1 0x0 0x2000000>;
+
+		pinctrl-0 = <&nand_pins>, <&nand_cs1_pins>;
+		pinctrl-names = "default";
+
+		nand-on-flash-bbt;
+		nand-ecc-strength = <3>;
+		nand-ecc-step-size = <256>;
+		nand-use-soft-ecc-engine;
+
+		partitions {
+			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
+
+			partition@0 {
+				label = "u-boot";
+				reg = <0x0 0x40000>;
+				read-only;
+			};
+
+			partition@e0000 {
+				label = "u-boot-env";
+				reg = <0xe0000 0x20000>;
+			};
+
+			partition@100000 {
+				label = "ubi";
+				reg = <0x100000 0x2300000>;
+			};
+
+			partition@2400000 {
+				label = "data";
+				reg = <0x2400000 0x1c00000>;
+			};
+		};
+	};
+};
+
+&pci0 {
+	status = "okay";
+	reset-gpios = <&gpio 21 GPIO_ACTIVE_LOW>;
+
+	pinctrl-0 = <&pci_gnt1_pins>, <&pci_req1_pins>;
+	pinctrl-names = "default";
+
+	wifi@1814,3062 {
+		compatible = "pci1814,3062";
+		reg = <0x7000 0 0 0 0>;
+		ralink,eeprom = "RT3062.eeprom";
+	};
+};
+
+&pcie0 {
+	status = "disabled";
+};
+
+&stp {
+	status = "okay";
+};
+
+&usb_phy0 {
+	status = "okay";
+};
+
+&usb0 {
+	status = "okay";
+};
