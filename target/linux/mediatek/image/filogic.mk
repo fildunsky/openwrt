@@ -3050,6 +3050,23 @@ define Device/tenda_be12-pro
 endef
 TARGET_DEVICES += tenda_be12-pro
 
+define Device/teralink_tl3020-256mb
+  DEVICE_VENDOR := Teralink
+  DEVICE_MODEL := TL3020
+  DEVICE_VARIANT := 256mb
+  DEVICE_DTS := mt7981b-teralink-tl3020-256mb
+  DEVICE_DTS_DIR := ../dts
+  SUPPORTED_DEVICES += mediatek,mt7981-spim-snand-gsw-rfb
+  UBINIZE_OPTS := -E 5
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  IMAGE_SIZE := 234752k
+  KERNEL_IN_UBI := 1
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  DEVICE_PACKAGES := kmod-usb3 kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
+endef
+TARGET_DEVICES += teralink_tl3020-256mb
+
 define Device/totolink_x6000r
   DEVICE_VENDOR := TOTOLINK
   DEVICE_MODEL := X6000R
