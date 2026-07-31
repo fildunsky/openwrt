@@ -2023,6 +2023,18 @@ define Device/huasifei_wh3000r-nand
 endef
 TARGET_DEVICES += huasifei_wh3000r-nand
 
+define Device/huasifei_wh5000
+  DEVICE_VENDOR := Huasifei
+  DEVICE_MODEL := WH5000
+  DEVICE_DTS := mt7987a-huasifei-wh5000
+  DEVICE_DTS_DIR := ../dts
+  DEVICE_PACKAGES := kmod-hwmon-pwmfan kmod-usb3 mt7987-2p5g-phy-firmware \
+	kmod-mt7996e kmod-mt7992-23-firmware f2fsck mkf2fs
+  KERNEL_LOADADDR := 0x40000000
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += huasifei_wh5000
+
 define Device/imou_hx21
   DEVICE_VENDOR := Imou
   DEVICE_MODEL := HX21

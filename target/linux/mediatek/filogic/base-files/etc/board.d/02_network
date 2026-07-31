@@ -152,6 +152,7 @@ mediatek_setup_interfaces()
 	huasifei,wh3000|\
 	huasifei,wh3000-pro-emmc|\
 	huasifei,wh3000-pro-nand|\
+	huasifei,wh5000|\
 	wavlink,wl-wnt100x3|\
 	wavlink,wl-wnt100x3-ubootmod)
 		ucidef_set_interfaces_lan_wan eth0 eth1
@@ -289,7 +290,8 @@ mediatek_setup_macs()
 		lan_mac=$(macaddr_add "$wan_mac" 1)
 		label_mac=$wan_mac
 		;;
-	hiveton,h5000m)
+	hiveton,h5000m|\
+	huasifei,wh5000)
 		lan_mac=$(macaddr_generate_from_mmc_cid mmcblk0)
 		wan_mac=$(macaddr_add "$lan_mac" 1)
 		label_mac=$wan_mac
